@@ -18,11 +18,14 @@ I am aware of some python to lua translators but my use case is somewhat specifi
 import os
 from luator import luator
 
-class genlua():
+class genlua:
   
   '''
   Class for running and writing out to a new lua file based off a template
   '''
+
+  def __init__(self):
+    self.lua = luator()
 
 
   def get_lua(self):
@@ -32,7 +35,8 @@ class genlua():
     '''
     self.current_dir = os.path.dirname(__file__)
     self.lua_template = os.path.join(self.current_dir, "template.lua")
-    print(type(luator.read_lua(self.lua_template)))
+    
+    return f"{type(self.lua.read_lua(self.lua_template))}"
 
 
 
