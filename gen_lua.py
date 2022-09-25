@@ -36,3 +36,14 @@ class genlua(self):
 
 
 
+def main():
+
+  '''
+  General Run for gen_lua
+  '''
+  genlua.get_lua()
+
+
+if __name__ == '__main__':
+
+  main()
