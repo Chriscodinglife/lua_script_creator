@@ -1,0 +1,21 @@
+Customer support: For Customer Support contact us here: <a href="https://www.etsy.com/shop/MoreBackgrounds">More Backgrounds Please Etsy Store
+
+<p>Be sure to install the following fonts before you set up any scene from our installer
+<p>Cinzel Font: <a href="https://www.dafont.com/cinzel.font">Download Here</a>
+
+Thank you for purchasing our Stream Package!.
+
+Use this manual to also help you in getting setup
+
+Setup Manual: <a href="https://docs.google.com/presentation/d/10k4aUhLKfjd4edGtamPydoJ6D9OZdy_AURNg-jvBLPE/edit?usp=sharing">Retrowave Setup Manual</a>
+
+<logo_data>
+<product_data>
+
+<package_name>
+<customer_sup_text>
+<thanks_message>
+<menu_instr> 
+
+<manual_instr>
+<manual>
