@@ -1,5 +1,3 @@
-import os
-
 '''
 
  ______   
@@ -17,4 +15,4 @@ I am aware of some python to lua translators but my use case is somewhat specifi
 
 '''
 
-
+import os
