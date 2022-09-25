@@ -37,3 +37,14 @@ class luator(self):
     self.welcome_text_size=0
     self.welcome_text_style="set_welcome_style_here"
     self.welcome_text="set_welcome_here"
+
+    
+    def read_lua(self,file):
+
+        '''
+        Pass in the lua file and return True if file exists
+        '''
+        with open(file, 'r') as lua_file:
+            return True
+
+            
