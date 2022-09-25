@@ -9,6 +9,8 @@ Use this manual to also help you in getting setup
 
 Setup Manual: <a href="https://docs.google.com/presentation/d/10k4aUhLKfjd4edGtamPydoJ6D9OZdy_AURNg-jvBLPE/edit?usp=sharing">Retrowave Setup Manual</a>
 
+<current_date>
+
 <logo_data>
 <product_data>
 
