@@ -42,9 +42,10 @@ class luator(self):
     def read_lua(self,file):
 
         '''
-        Pass in the lua file and return True if file exists
+        Pass in the lua file and the file as variable
         '''
-        with open(file, 'r') as lua_file:
-            return True
-
+        with open(file, 'r') as lua:
+            self.lua_file = lua.read()
+            
+            return self.lua_file
             
