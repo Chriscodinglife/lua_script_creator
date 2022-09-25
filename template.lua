@@ -20,7 +20,7 @@ local description = [[
 <p><thanks_message>
 <p><menu_instr>
 <hr/>
-<center><h3> Fonts You Need To Install</h3></center>
+<center><h3><fonts_message></h3></center>
 <p>
 <p><fonts>
 <p>
@@ -185,7 +185,7 @@ function create_welcome_scene()
 
 	create_loop_overlay("Main_Design_Title/Main_Design_Title_1920_1080.webm",  scene_name .. " BG", new_scene, scene, 0, 0, 1, 1)
 
-	create_text("Azonix", 36, "Regular", "welcome to the where the past meets the future\nyour next stream just got a whole lot cooler", "center", _, true, black_color, 9, scene_name .. " Text", new_scene, scene, 360, 960)
+	create_text("<welcome_text_font>", 000, "<welcome_text_style>", "<welcome_text>", "center", _, true, black_color, 9, scene_name .. " Text", new_scene, scene, 360, 960)
 
 end
 
