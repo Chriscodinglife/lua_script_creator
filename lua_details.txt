@@ -5,9 +5,14 @@ Customer support: For Customer Support contact us here: <a href="https://www.ets
 
 Thank you for purchasing our Stream Package!.
 
+ Fonts You Need To Install
+
 Use this manual to also help you in getting setup
 
 Setup Manual: <a href="https://docs.google.com/presentation/d/10k4aUhLKfjd4edGtamPydoJ6D9OZdy_AURNg-jvBLPE/edit?usp=sharing">Retrowave Setup Manual</a>
+
+
+Variables to Edit
 
 <current_date>
 
@@ -19,5 +24,14 @@ Setup Manual: <a href="https://docs.google.com/presentation/d/10k4aUhLKfjd4edGta
 <thanks_message>
 <menu_instr> 
 
+<fonts_message>
+<fonts>
+
 <manual_instr>
 <manual>
+
+<welcome_text_font>
+000
+<welcome_text_style>
+<welcome_text>
+
