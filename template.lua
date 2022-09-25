@@ -226,7 +226,6 @@ function import_all_scenes()
 
 	create_welcome_scene()
 	create_starting_soon_scene()
-	create_game_on_scene()
 	create_be_right_back_scene()
 	create_thanks_for_watching_scene()
 
@@ -260,9 +259,6 @@ function script_properties()
 
 	local create_starting_soon_scene_btn = obs.obs_properties_add_button(properties, "create_starting_soon_scene", "Import Starting Soon Scene", create_starting_soon_scene)
 	obs.obs_property_set_long_description(create_starting_soon_scene_btn, "Insert the Starting Soon scene to your OBS Session.")
-
-	local create_game_on_scene_btn = obs.obs_properties_add_button(properties, "create_game_on_scene", "Import Game On Scene", create_game_on_scene)
-	obs.obs_property_set_long_description(create_game_on_scene_btn, "Setup your Game Scene by importing it via this button.")
 
 	local create_be_back_scene_btn = obs.obs_properties_add_button(properties, "create_be_back_scene", "Import Be Right Back Scene", create_be_right_back_scene)
 	obs.obs_property_set_long_description(create_be_back_scene_btn, "Insert the Be Right Back scene to your OBS Session.")
