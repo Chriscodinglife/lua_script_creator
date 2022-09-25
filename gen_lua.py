@@ -16,3 +16,23 @@ I am aware of some python to lua translators but my use case is somewhat specifi
 '''
 
 import os
+from luator import luator
+
+class genlua(self):
+  
+  '''
+  Class for running and writing out to a new lua file based off a template
+  '''
+
+
+  def get_lua():
+
+    '''
+    Return a file object
+    '''
+    current_dir = os.path.dirname(__file__)
+    lua_template = os.path.join(current_dir, "template.lua")
+    print(type(luator.read_lua(lua_template)))
+
+
+
