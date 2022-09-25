@@ -12,7 +12,7 @@ A script that will handle reading and outputting to a new lua file
 
 import os
 
-class luator():
+class luator:
 
     '''The master class for luator'''
     def __init__(self):
@@ -39,13 +39,13 @@ class luator():
         self.welcome_text="set_welcome_here"
 
     
-    def read_lua(self,file):
+    def read_lua(self, file):
 
         '''
         Pass in the lua file and the file as variable
         '''
         with open(file, 'r') as lua:
-            lua_file = lua.read()
+            self.lua_file = lua.read()
             
             return self.lua_file
             
