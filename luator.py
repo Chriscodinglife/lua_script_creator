@@ -49,5 +49,6 @@ class luator:
         with open(file, 'r') as lua:
             self.lua_file = lua.read()
             
-            return self.lua_file
-            
+            if self.lua_file != "":
+                return True
+    
