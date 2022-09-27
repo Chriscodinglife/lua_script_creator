@@ -20,7 +20,7 @@ class luator:
 
         self.current_dir = os.path.dirname(__file__)
 
-        self.temp_file = os.path.join(self.current_dir, "temp.lua")
+        self.temp_file = ""
 
         self.lua_file = self.get_lua(lua_file)
 
@@ -53,7 +53,7 @@ class luator:
         '''
 
         if self.check_lua(file):
-            
+
             with open(file, 'r') as lua:
                 text = lua.read()
                 
@@ -95,12 +95,25 @@ class luator:
     def check_lua(self, file_path):
 
         '''
-        Pass in the file path and return False if file is not a .lua file
+        Pass in the file path and return true if file is not a .lua file
         '''
 
         if file_path:
             extension = os.path.splitext(file_path)[-1].lower()
 
-            if extension != ".lua":
-                return False
+            if extension == ".lua":
+                
+                self.temp_file = os.path.join(self.current_dir, "temp.lua")
+                return True
+            
+            print("File is not .lua")
+            return False
+
+    def check_temp(self):
+        
+        '''
+        Return true if the temp file exists
+        '''
+        if os.path.exists(self.temp_file):
             return True
+        return False
