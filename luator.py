@@ -46,9 +46,6 @@ class luator:
         self.welcome_text = "set_welcome_here"
         
         
-
-
-    
     def get_lua(self, file):
 
         '''
