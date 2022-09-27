@@ -15,7 +15,9 @@ import os
 class luator:
 
     '''The master class for luator'''
-    def __init__(self):
+    def __init__(self, lua_file):
+
+        self.lua_file=lua_file
 
         self.current_date="set_date_here"
         
