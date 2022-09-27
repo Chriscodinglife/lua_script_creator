@@ -62,10 +62,14 @@ class luator:
 
     def lua_body(self):
 
-        '''Return current text in the temp body'''
+        '''Return current text in the temp body, otherwise return False'''
 
-        with open(self.temp_file, 'r') as lua:
-            return lua.read()
+        try:
+
+            with open(self.temp_file, 'r') as lua:
+                return lua.read()
+        except FileNotFoundError:
+            return False
 
 
     def update_temp_file(self, new_text):
