@@ -105,14 +105,13 @@ class luator:
         if file_path:
             extension = os.path.splitext(file_path)[-1].lower()
 
-        try: 
             if extension == ".lua":
                 
                 self.temp_file = os.path.join(self.current_dir, "temp.lua")
                 return True
-        except:
-            NotLuaFile(file_path)
-
+        
+            raise NotLuaFile(file_path)
+            
 
     def check_temp(self):
         
