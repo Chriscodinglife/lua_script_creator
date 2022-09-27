@@ -76,9 +76,10 @@ class luator:
 
         if new_text != "":
                 
-            with open(self.temp_file, 'w') as lua:
-                lua.write(new_text)
-                return True
+            if self.check_temp():
+                with open(self.temp_file, 'w') as lua:
+                    lua.write(new_text)
+                    return True
     
 
     def replace_text(self, find_text, replacement_text):
@@ -116,7 +117,7 @@ class luator:
         '''
         if os.path.exists(self.temp_file):
             return True
-        raise 
+        raise NoTempFile(self.temp_file)
 
 
 # Errors
