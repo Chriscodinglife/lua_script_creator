@@ -18,6 +18,10 @@ class luator:
     '''The master class for luator'''
     def __init__(self, lua_file):
 
+        self.current_dir = os.path.dirname(__file__)
+
+        self.temp_file = os.path.join(self.current_dir, "temp.lua")
+
         self.lua_file = self.get_lua(lua_file)
 
         self.current_date = "set_date_here"
@@ -41,8 +45,8 @@ class luator:
         self.welcome_text_style = "set_welcome_style_here"
         self.welcome_text = "set_welcome_here"
         
-        self.current_dir = os.path.dirname(__file__)
-        self.temp_file = os.path.join(self.current_dir, "temp.lua")
+        
+
 
     
     def get_lua(self, file):
@@ -52,9 +56,9 @@ class luator:
         '''
 
         with open(file, 'r') as lua:
-            self.lua_file = lua.read()
+            text = lua.read()
             
-        self.update_temp_file(self.lua_file)
+        self.update_temp_file(text)
 
 
     def lua_body(self):
