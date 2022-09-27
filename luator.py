@@ -105,13 +105,14 @@ class luator:
         if file_path:
             extension = os.path.splitext(file_path)[-1].lower()
 
+        try: 
             if extension == ".lua":
                 
                 self.temp_file = os.path.join(self.current_dir, "temp.lua")
                 return True
-            
-            print("File is not .lua")
-            return False
+        except:
+            NotLuaFile(file_path)
+
 
     def check_temp(self):
         
@@ -133,7 +134,10 @@ class NotLuaFile(Error):
     '''
     Raise when file is not a lua file
     '''
-    pass
+    def __init__(self, file_path):
+        self.file_path = file_path
+        self.message = f"{self.file_path} is not a lua file"
+        super().__init__(self.message)
 
 
 class NoTempFile(Error):
