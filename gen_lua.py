@@ -25,12 +25,12 @@ def main():
   General Run for gen_lua
   '''
 
-  lua = luator()
-
   current_dir = os.path.dirname(__file__)
   lua_template = os.path.join(current_dir, "template.lua")
 
-  print(lua.get_lua(lua_template))
+  lua = luator(lua_template)
+
+  
 
 
 if __name__ == '__main__':
