@@ -88,3 +88,17 @@ class luator:
 
         replacement = re.sub(find_text, replacement_text, self.lua_body())
         self.update_temp_file(replacement)
+
+    
+    def check_lua(self, file_path):
+
+        '''
+        Pass in the file path and return False if file is not a .lua file
+        '''
+
+        if file_path:
+            extension = os.path.splitext(file_path)[-1].lower()
+
+            if extension != ".lua":
+                return False
+            return True
