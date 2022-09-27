@@ -121,3 +121,23 @@ class luator:
         if os.path.exists(self.temp_file):
             return True
         return False
+
+
+# Errors
+class Error(Exception):
+    '''Base class for other exceptions'''
+    pass
+
+
+class NotLuaFile(Error):
+    '''
+    Raise when file is not a lua file
+    '''
+    pass
+
+
+class NoTempFile(Error):
+    '''
+    Raise when temp file does not exist
+    '''
+    pass
