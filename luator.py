@@ -64,12 +64,8 @@ class luator:
 
         '''Return current text in the temp body, otherwise return False'''
 
-        try:
-
-            with open(self.temp_file, 'r') as lua:
-                return lua.read()
-        except FileNotFoundError:
-            return False
+        with open(self.temp_file, 'r') as lua:
+            return lua.read()
 
 
     def update_temp_file(self, new_text):
@@ -120,7 +116,7 @@ class luator:
         '''
         if os.path.exists(self.temp_file):
             return True
-        return False
+        raise 
 
 
 # Errors
@@ -143,4 +139,7 @@ class NoTempFile(Error):
     '''
     Raise when temp file does not exist
     '''
-    pass
+    def __init__(self, file_path):
+        self.file_path = file_path
+        self.message = f"{self.file_path} does not exist"
+        super().__init__(self.message)
