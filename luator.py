@@ -60,7 +60,7 @@ class luator:
                 self.update_temp_file(text)
 
 
-    def lua_body(self):
+    def temp_body(self):
 
         '''Return current text in the temp body, otherwise return False'''
 
@@ -89,7 +89,7 @@ class luator:
         Ensure to use regex for the find_text variable
         '''
 
-        replacement = re.sub(find_text, replacement_text, self.lua_body())
+        replacement = re.sub(find_text, replacement_text, self.temp_body())
         self.update_temp_file(replacement)
 
     
