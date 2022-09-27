@@ -24,10 +24,6 @@ class genlua:
   Class for running and writing out to a new lua file based off a template
   '''
 
-  def __init__(self):
-    self.lua = luator()
-
-
   def get_lua(self):
 
     '''
@@ -45,6 +41,9 @@ def main():
   '''
   General Run for gen_lua
   '''
+
+  lua = luator()
+
   gl = genlua()
   gl.get_lua()
 
