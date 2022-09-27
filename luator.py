@@ -121,7 +121,6 @@ class luator:
         raise NoTempFile(self.temp_file)
 
 
-# Errors
 class Error(Exception):
     '''Base class for other exceptions'''
     pass
@@ -133,7 +132,7 @@ class NotLuaFile(Error):
     '''
     def __init__(self, file_path):
         self.file_path = file_path
-        self.message = f"{self.file_path} is not a lua file"
+        self.message = f"{self.file_path} is not a lua file. Please pass in a lua file"
         super().__init__(self.message)
 
 
@@ -143,5 +142,5 @@ class NoTempFile(Error):
     '''
     def __init__(self, file_path):
         self.file_path = file_path
-        self.message = f"{self.file_path} does not exist"
+        self.message = f"{self.file_path} does not exist.Make sure to either set the template or pass in a lua file."
         super().__init__(self.message)
