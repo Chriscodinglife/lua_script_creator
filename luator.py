@@ -39,7 +39,7 @@ class luator:
         self.welcome_text="set_welcome_here"
 
     
-    def read_lua(self, file):
+    def get_lua(self, file):
 
         '''
         Pass in the lua file and the file as variable
