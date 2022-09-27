@@ -30,8 +30,6 @@ def main():
 
   lua = luator(lua_template)
 
-  
-
 
 if __name__ == '__main__':
 
