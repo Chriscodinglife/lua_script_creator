@@ -52,10 +52,12 @@ class luator:
         Pass in the lua file and the file as variable and set the temp file
         '''
 
-        with open(file, 'r') as lua:
-            text = lua.read()
+        if self.check_lua(file):
             
-        self.update_temp_file(text)
+            with open(file, 'r') as lua:
+                text = lua.read()
+                
+                self.update_temp_file(text)
 
 
     def lua_body(self):
