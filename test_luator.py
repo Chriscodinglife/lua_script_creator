@@ -24,11 +24,10 @@ class Test_luator(unittest.TestCase):
     
     def test_output_file(self):
         '''Pass if luator can export a file to a given directory'''
-        path = "~/Desktop/test_folder"
+        path = "~/Desktop/"
         folder_path = os.path.expanduser(path)
-        full_file_path = os.path.join(folder_path,"test.lua")
         message = "File could not be exported"
-        self.assertTrue(lua.export_lua(full_file_path), message)
+        self.assertTrue(lua.export_lua(folder_path), message)
 
 
 if __name__ == '__main__':
