@@ -6,12 +6,9 @@
  \ \_____\
   \/_____/
                                                    
-Generate OBS Lua
+Generate OBS Lua Fast API Server
 
-This is intended to output a lua script that can be used with OBS to create a user interface.
-Ideally for creating scenes and importing items.
-
-I am aware of some python to lua translators but my use case is somewhat specific. C'est la vie.
+- This is intended to act as a host for creating and outputting an OBS File to be used with a given Stream package
 
 '''
 
