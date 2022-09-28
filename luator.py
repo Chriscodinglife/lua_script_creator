@@ -9,8 +9,6 @@
 A script that will handle reading and outputting to a new lua file
 
 '''
-
-from msilib.schema import Error
 import os
 import re
 
