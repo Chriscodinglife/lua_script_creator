@@ -19,10 +19,14 @@ class luator:
     def __init__(self, lua_file):
 
         self.current_dir = os.path.dirname(__file__)
+        self.lua_template = os.path.join(self.current_dir, "template.lua")
 
         self.temp_file = ""
 
-        self.lua_file = self.get_lua(lua_file)
+        if lua_file:
+            self.get_lua(lua_file)
+        else:
+            self.get_lua(self.lua_template)
 
         self.current_date = "set_date_here"
         
@@ -49,7 +53,7 @@ class luator:
     def get_lua(self, file):
 
         '''
-        Pass in the lua file and the file as variable and set the temp file
+        Pass in the given file and make a temporary copy of it
         '''
 
         if self.check_lua(file):
@@ -62,7 +66,7 @@ class luator:
 
     def temp_body(self):
 
-        '''Return current text in the temp body, otherwise return False'''
+        '''Return current text in the temp body'''
 
         if self.check_temp():
             with open(self.temp_file, 'r') as lua:
@@ -121,6 +125,15 @@ class luator:
         raise NoTempFile(self.temp_file)
 
 
+    def set_template(self):
+
+        '''
+        Set the template file as the lua and return True
+        '''
+        self.get_lua(self.lua_template)
+
+
+
 class Error(Exception):
     '''Base class for other exceptions'''
     pass
@@ -142,5 +155,5 @@ class NoTempFile(Error):
     '''
     def __init__(self, file_path):
         self.file_path = file_path
-        self.message = f"{self.file_path} does not exist.Make sure to either set the template or pass in a lua file."
+        self.message = f"{self.file_path} does not exist. Make sure to either set the template or pass in a lua file."
         super().__init__(self.message)
