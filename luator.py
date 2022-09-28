@@ -135,23 +135,29 @@ class luator:
         self.get_lua(self.lua_template)
 
     
-    def export_lua(self):
+    def export_lua(self, given_path=None):
         
         '''
         Request the location of the output path from the user
         '''
-
-        output_path = input('Enter in the path to Export the Lua file: ').replace('"', "")
+        if given_path == None:
+            output_path = input('Enter in the path to Export the Lua file: ').replace('"', "")
+            if output_path == "":
+                output_path = os.path.expanduser("~/Desktop/")
+        else:
+            output_path = given_path
+        
         normal_path = os.path.normpath(output_path)
         full_path = os.path.join(normal_path, self.output_file_name)
 
         with open(self.temp_file, 'r') as read_lua:
             body = read_lua.read()
 
-            with open(full_path, 'w') as output_file:
-                output_file.write(body)
 
-                return True
+        with open(full_path, 'w') as output_file:
+            output_file.write(body)
+
+            return True
 
 
 
