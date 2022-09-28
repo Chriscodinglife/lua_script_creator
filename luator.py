@@ -48,6 +48,7 @@ class luator:
         self.welcome_text_size = 0
         self.welcome_text_style = "set_welcome_style_here"
         self.welcome_text = "set_welcome_here"
+        self.output_file_name = "Quick OBS Installer.lua"
         
         
     def get_lua(self, file):
@@ -58,10 +59,13 @@ class luator:
 
         if self.check_lua(file):
 
+            self.temp_file = os.path.join(self.current_dir, "temp.lua")
+            
             with open(file, 'r') as lua:
                 text = lua.read()
                 
                 self.update_temp_file(text)
+                return True
 
 
     def temp_body(self):
@@ -108,7 +112,6 @@ class luator:
 
             if extension == ".lua":
                 
-                self.temp_file = os.path.join(self.current_dir, "temp.lua")
                 return True
         
             raise NotLuaFile(file_path)
@@ -130,6 +133,25 @@ class luator:
         Set the template file as the lua and return True
         '''
         self.get_lua(self.lua_template)
+
+    
+    def export_lua(self):
+        
+        '''
+        Request the location of the output path from the user
+        '''
+
+        output_path = input('Enter in the path to Export the Lua file: ').replace('"', "")
+        normal_path = os.path.normpath(output_path)
+        full_path = os.path.join(normal_path, self.output_file_name)
+
+        with open(self.temp_file, 'r') as read_lua:
+            body = read_lua.read()
+
+            with open(full_path, 'w') as output_file:
+                output_file.write(body)
+
+                return True
 
 
 
