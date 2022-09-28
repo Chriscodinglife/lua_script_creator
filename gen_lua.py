@@ -15,7 +15,6 @@ I am aware of some python to lua translators but my use case is somewhat specifi
 
 '''
 
-import os
 from luator import luator
 
 
@@ -30,6 +29,8 @@ def main():
 
   # Test replace a text
   lua.replace_text("<package_name>", "This cool title here")
+  lua.export_lua()
+  lua.clean_up()
 
 
 if __name__ == '__main__':
