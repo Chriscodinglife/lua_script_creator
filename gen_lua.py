@@ -29,7 +29,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
   return {"item_id": item_id, "q": q}
 
 
-def main():
+def gen_lua():
 
   '''
   General Run for gen_lua
@@ -44,6 +44,6 @@ def main():
   lua.clean_up()
 
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
 
-  main()
+#   main()
