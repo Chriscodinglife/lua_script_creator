@@ -10,6 +10,7 @@ A script that will handle reading and outputting to a new lua file
 
 '''
 
+from msilib.schema import Error
 import os
 import re
 
@@ -150,14 +151,31 @@ class luator:
         normal_path = os.path.normpath(output_path)
         full_path = os.path.join(normal_path, self.output_file_name)
 
-        with open(self.temp_file, 'r') as read_lua:
-            body = read_lua.read()
+        if self.check_temp():
+            with open(self.temp_file, 'r') as read_lua:
+                body = read_lua.read()
 
 
         with open(full_path, 'w') as output_file:
             output_file.write(body)
 
             return True
+
+    
+    def clean_up(self):
+
+        '''
+        Pass True after removing the temp file
+        '''
+        try:
+            os.remove(self.temp_file)
+        except Error as error:
+            print(error)
+            return True
+
+        if os.path.exists(self.temp_file):
+            return False
+        return True
 
 
 
