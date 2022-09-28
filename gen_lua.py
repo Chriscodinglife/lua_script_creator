@@ -25,12 +25,8 @@ def main():
   General Run for gen_lua
   '''
 
-  # Get the location of the template.lua file
-  current_dir = os.path.dirname(__file__)
-  lua_template = os.path.join(current_dir, "template.lua")
-
   # Initiate luator
-  lua = luator(lua_template)
+  lua = luator()
 
   # Test replace a text
   lua.replace_text("<package_name>", "This cool title here")

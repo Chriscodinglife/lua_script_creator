@@ -16,7 +16,7 @@ import re
 class luator:
 
     '''The master class for luator'''
-    def __init__(self, lua_file):
+    def __init__(self, **lua_file):
 
         self.current_dir = os.path.dirname(__file__)
         self.lua_template = os.path.join(self.current_dir, "template.lua")
