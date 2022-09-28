@@ -16,14 +16,14 @@ import re
 class luator:
 
     '''The master class for luator'''
-    def __init__(self, **lua_file):
+    def __init__(self, lua_file=None):
 
         self.current_dir = os.path.dirname(__file__)
         self.lua_template = os.path.join(self.current_dir, "template.lua")
 
         self.temp_file = ""
 
-        if lua_file:
+        if lua_file != None:
             self.get_lua(lua_file)
         else:
             self.get_lua(self.lua_template)
@@ -113,7 +113,16 @@ class luator:
                 return True
         
             raise NotLuaFile(file_path)
-            
+
+    
+    def create_temp(self):
+
+        '''
+        Create the temp lua file
+        '''
+        with open(self.lua_template, 'w') as file:
+            file.write('')
+
 
     def check_temp(self):
         
