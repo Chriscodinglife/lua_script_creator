@@ -40,4 +40,4 @@ def gen_lua():
   lua_file = lua.export_via_web()
   lua.clean_up()
 
-  return FileResponse(lua_file)
+  return FileResponse(lua_file, media_type='application/octet-stream',filename=lua_file)
