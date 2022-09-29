@@ -160,6 +160,23 @@ class luator:
             return True
 
     
+    def export_via_web(self):
+        '''
+        Create the final lua file and return the path of the file
+        '''
+
+        if self.check_temp():
+            with open(self.temp_file, 'r') as read_temp:
+                temp_body = read_temp.read()
+                
+            with open(self.output_file_name, 'w') as output_file:
+                output_file.write(temp_body)
+
+            return self.output_file_name
+
+
+
+    
     def clean_up(self):
 
         '''
