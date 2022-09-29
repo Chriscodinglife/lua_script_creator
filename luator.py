@@ -188,7 +188,7 @@ class luator:
             print(error)
             return True
 
-        if os.path.exists(self.temp_file):
+        if os.path.exists(self.temp_file) and os.path.exists(self.output_file_name):
             return False
         return True
 
