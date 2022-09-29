@@ -12,18 +12,12 @@ Generate OBS Lua Fast API Server
 
 '''
 
-from typing import Union
-from fastapi import FastAPI
+from fastapi import FastAPI, File
 from luator import luator
-from pydantic import BaseModel
+from fastapi.responses import FileResponse
+
 
 app = FastAPI()
-
-
-class Item(BaseModel):
-    name: str
-    price: float
-    is_offer: Union[bool, None] = None
 
 
 @app.get("/")
@@ -31,16 +25,7 @@ def read_root():
   return {"Hello": "World"}
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-  return {"item_id": item_id, "q": q}
-
-
-@app.put("/items/{item_id}")
-def update_item(item_id: int, item: Item):
-    return {"item_name": item.name, "item_id": item_id}
-
-
+@app.get("/generate")
 def gen_lua():
 
   '''
@@ -52,10 +37,7 @@ def gen_lua():
 
   # Test replace a text
   lua.replace_text("<package_name>", "This cool title here")
-  lua.export_lua()
+  lua_file = lua.export_via_web()
   lua.clean_up()
 
-
-# if __name__ == '__main__':
-
-#   main()
+  return FileResponse(lua_file)
