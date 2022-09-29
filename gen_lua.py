@@ -12,7 +12,7 @@ Generate OBS Lua Fast API Server
 
 '''
 
-from fastapi import FastAPI, File
+from fastapi import FastAPI
 from luator import luator
 from fastapi.responses import FileResponse
 
