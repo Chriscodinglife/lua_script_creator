@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lua-deployment
+  labels:
+    app: genlua
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: genlua
+  template:
+    metadata:
+      labels:
+        app: genlua
+    spec:
+      containers:
+        - name: genlua
+          image: gen_lua
+          ports:
+          - containerPort: 5000
+          imagePullPolicy: Never
