@@ -192,8 +192,6 @@ class luator:
             return False
         return True
 
-
-
 class Error(Exception):
     '''Base class for other exceptions'''
     pass

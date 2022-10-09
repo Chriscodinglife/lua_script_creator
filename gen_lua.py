@@ -20,9 +20,9 @@ from fastapi.responses import FileResponse
 app = FastAPI()
 
 
-@app.get("/")
-def read_root():
-  return {"Hello": "World"}
+@app.get("/ping", status_code=201)
+def ping():
+  return {"response": "Hello there"}
 
 
 @app.get("/generate")
