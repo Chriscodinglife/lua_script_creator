@@ -2,8 +2,11 @@ import React, { Component } from 'react'
 
 class Form extends Component {
     initialState = {
-        name: '',
-        job: '',
+        logo_image: '',
+        product_image: '',
+        package_name: '',
+        support_link: 'https://www.etsy.com/shop/MoreBackgrounds',
+        store_name: 'More Backgrounds',
     }
 
     state = this.initialState
@@ -22,23 +25,49 @@ class Form extends Component {
     }
 
     render () {
-        const { name, job } = this.state;
+        const { 
+            logo_image,
+            product_image,
+            package_name,
+            support_link,
+            store_name } = this.state;
     
         return (
             <form>
-                <label htmlFor="name">Name</label>
+                <label htmlFor="logo_image">Your Logo Image</label>
                 <input
                     type="text"
-                    name="name"
-                    id="name"
-                    value={name}
+                    name="logo_image"
+                    id="logo_image"
+                    value={logo_image}
                     onChange={this.handleChange} />
-                <label htmlFor="job">Job</label>
+                <label htmlFor="product_image">Product Image</label>
                 <input
                     type="text"
-                    name="job"
-                    id="job"
-                    value={job}
+                    name="product_image"
+                    id="product_image"
+                    value={product_image}
+                    onChange={this.handleChange} />
+                <label htmlFor='package_name'>Package Name</label>
+                <input
+                    type="text"
+                    name="package_name"
+                    id="package_name"
+                    value={package_name}
+                    onChange={this.handleChange} />
+                <label htmlFor='support_link'>Your Store Link</label>
+                <input
+                    type="text"
+                    name="support_link"
+                    id="support_link"
+                    value={support_link}
+                    onChange={this.handleChange} />
+                <label htmlFor='store_name'>Your Store Name</label>
+                <input
+                    type="text"
+                    name="store_name"
+                    id="store_name"
+                    value={store_name}
                     onChange={this.handleChange} />
                 <input type="button" value="Submit" onClick={this.submitForm} />
             </form>
@@ -46,9 +75,6 @@ class Form extends Component {
     }
 
 }
-
-
-
 
 
 export default Form;
