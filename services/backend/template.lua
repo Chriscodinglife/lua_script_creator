@@ -1,11 +1,9 @@
 -- MBP, Chris O
--- <current_date>
-
 
 -- VARIABLES
-local logo="<logo_data>"
+local logo="<logo_image>"
 
-local product="<product_data>"
+local product="<product_image>"
 
 local description = [[
 <hr/>
@@ -16,17 +14,12 @@ local description = [[
 <p>
 <center><img width=60 height=60 src=']] .. logo .. [['/></center>
 <p>
-<center><customer_sup_text></a></center>
-<p><thanks_message>
-<p><menu_instr>
-<hr/>
-<center><h3><fonts_message></h3></center>
-<p>
-<p><fonts>
-<p>
+<center>For Customer Support contact us here: <a hrep="<support_link>"><store_name></a></center>
+<p>Thank you for purchasing our Stream Package!
+<p>Use this menu to quickly set your stream up
 <hr/>
 <p>
-<p><manual_instr>
+<p>Use this manual to help you in getting setup:
 <p><manual>
 <p>
 <hr/>
