@@ -1,3 +1,5 @@
 lua_details.txt
 README.md
 test_luator.py
+lua-deployment.yaml
+lua-services.yaml
