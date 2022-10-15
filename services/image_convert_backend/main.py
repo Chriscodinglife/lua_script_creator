@@ -21,13 +21,16 @@ app = FastAPI()
 
 @app.get("/ping", status_code=201)
 def ping():
+
   '''Ping the server'''
   return {"response": "Hello there"}
 
 
 @app.post("/convert/", status_code=status.HTTP_201_CREATED)
 async def convert_image(file: UploadFile = File(...)):
+
   '''Return an image in base64 data'''
+  
   image_converter = ImageConverter()
   image_converter.create_image_file(file_name=file.filename, file=file.file)
   if image_converter.check_image_file(image_path=image_converter.image_path):
