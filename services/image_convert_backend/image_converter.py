@@ -28,7 +28,7 @@ class ImageConverter:
         '''Create a file with the given name and content'''
 
         with open(file_name, "wb") as file_object:
-            file_object.write(file)
+            file_object.write(file.read())
             self.image_path = file_name
             self.file_name = file_name
 
@@ -54,6 +54,7 @@ class ImageConverter:
         original_image = Image.open(self.image_path)
 
         new_image = original_image.resize((resize_x, resize_y))
+        original_image.close()
 
         return new_image
     
@@ -64,8 +65,10 @@ class ImageConverter:
         buffered = BytesIO()
 
         image.save(buffered, format='PNG')
+        image.close()
         image_base64_str = base64.b64encode(buffered.getvalue()).decode()
         
         data_image_str = "data:image/png;base64,"
-
+        
+        pathlib.Path(self.image_path).unlink()
         return data_image_str + image_base64_str
