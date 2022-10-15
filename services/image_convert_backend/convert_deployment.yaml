@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: convert-deployment
+  labels:
+    app: imageconvert
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: imageconvert
+  template:
+    metadata:
+      labels:
+        app: imageconvert
+    spec:
+      containers:
+        - name: imageconvert
+          image: imageconvert
+          ports:
+          - containerPort: 8080
+          imagePullPolicy: Never
