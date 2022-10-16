@@ -5,11 +5,12 @@ import Form from './Form';
 function App() {
 
   const image_convert_backend = 'http://localhost:8080';
+  const lua_backend = 'http://localhost:5000';
 
   const [allValues, setAllValues] = useState({
+    pkgName: '',
     logoData: '',
     productData: '',
-    pkgName: '',
     supportLink: '',
     storeName: '',
     manual: ''
@@ -60,14 +61,51 @@ function App() {
 
 
   const handleSubmit = (e) => {
-    const obsdata = allValues;
+    e.preventDefault();
+    const obsdata = { "package_name": allValues.pkgName,
+                      "store_name": allValues.storeName,
+                      "support_link": allValues.supportLink,
+                      "manual_link": allValues.manual,
+                      "logo_image": allValues.logoData,
+                      "product_image": allValues.productData };
+
+    let filename = "";
+
+    fetch(lua_backend + "/generate", {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(obsdata),
+    })
+    .then(response => {
+      const disposition = response.headers.get('Content-Disposition');
+      filename = disposition.split(/;(.+)/)[1].split(/=(.+)/)[1];
+      if (filename.toLowerCase().startsWith("utf-8''"))
+            filename = decodeURIComponent(filename.replace("utf-8''", ''));
+        else
+            filename = filename.replace(/['"]/g, '');
+        return response.blob();
+    })
+    .then(blob => {
+        var url = window.URL.createObjectURL(blob); // Create a url path to download
+        var a = document.createElement('a'); // Create a link
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a); // Append the link to the body
+        a.click();
+        window.URL.revokeObjectURL(url); // Remove the url path
+        a.remove(); // Remove the link
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
 
   };
+
 
   return (
     <div>
       <h1> OBS Script Creator </h1>
-      <h2> Create your obs script below</h2>
+      <h2> Create your obs script below </h2>
       <Form 
         values={allValues}
         handleChange={handleChange} 
