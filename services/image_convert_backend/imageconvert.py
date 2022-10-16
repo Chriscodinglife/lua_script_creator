@@ -32,7 +32,6 @@ app.add_middleware(
 )
 
 
-
 @app.get("/ping", status_code=201)
 def ping():
 
