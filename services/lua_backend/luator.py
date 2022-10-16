@@ -27,28 +27,22 @@ class luator:
         else:
             self.get_lua(self.lua_template)
 
-        self.current_date = "set_date_here"
-        
-        self.logo_data = "set_logo_here"
-        self.product_data = "set_product_here"
-        
-        self.package_name = "set_title_here"
-        self.customer_sup_text = "set_support_here"
-        self.thanks_message = "set_thanks_here"
-        self.menu_instr = "set_menu_text_here"
+        self.obs_data = {'package_name': "",
+                        'store_name': "",
+                        'support_link': "",
+                        'manual_link':  "",
+                        'logo_image': "",
+                        'product_image': '',}
 
-        self.fonts_message = "set_font_title_here"
-        self.fonts = "set_font_details_here"
+        self.obs_replace = {'package_name': "<package_name>",
+                            'store_name': "<store_name>",
+                            'support_link': "<support_link>",
+                            'manual_link':  "<manual_link>",
+                            'logo_image': "<logo_image>",
+                            'product_image': '<product_image>',}
 
-        self.manual_instr = "set_man_title_here"
-        self.manual = "set_man_link_here"
-
-        self.welcome_text_font = "set_welcome_font_here"
-        self.welcome_text_size = 0
-        self.welcome_text_style = "set_welcome_style_here"
-        self.welcome_text = "set_welcome_here"
         self.output_file_name = "Quick OBS Installer.lua"
-        
+   
         
     def get_lua(self, file):
 
@@ -100,6 +94,24 @@ class luator:
         self.update_temp_file(replacement)
 
     
+    def set_obs_data(self, data):
+        '''
+        Pass in a dictionary of the OBS data
+        '''
+        for key in data:
+            self.obs_data[key] = data[key]
+
+    
+    def replace_obs(self):
+
+        '''
+        Replace the values in the OBS file with given OBS Data
+        '''
+        for key in self.obs_data:
+            if self.obs_data[key] != "":
+                self.replace_text(self.obs_replace[key], self.obs_data[key])
+
+    
     def check_lua(self, file_path):
 
         '''
@@ -134,7 +146,7 @@ class luator:
         self.get_lua(self.lua_template)
 
     
-    def export_lua(self, given_path=None):
+    def export_lua_local_test(self, given_path=None):
         
         '''
         Request the location of the output path from the user
@@ -162,7 +174,7 @@ class luator:
     
     def export_via_web(self):
         '''
-        Create the final lua file and return the path of the file
+        Create the final lua file and return the file
         '''
 
         if self.check_temp():
@@ -173,8 +185,6 @@ class luator:
                 output_file.write(temp_body)
 
             return self.output_file_name
-
-
 
     
     def clean_up(self):
