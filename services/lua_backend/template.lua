@@ -14,13 +14,13 @@ local description = [[
 <p>
 <center><img width=60 height=60 src=']] .. logo .. [['/></center>
 <p>
-<center>For Customer Support contact us here: <a hrep="<support_link>"><store_name></a></center>
+<center>For Customer Support contact us here: <a href="<support_link>"><store_name></a></center>
 <p>Thank you for purchasing our Stream Package!
 <p>Use this menu to quickly set your stream up
 <hr/>
 <p>
 <p>Use this manual to help you in getting setup:
-<p><manual>
+<center><a href="<manual_link>">Setup Manual</a></center>
 <p>
 <hr/>
 <p>
