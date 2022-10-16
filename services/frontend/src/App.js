@@ -61,12 +61,19 @@ function App() {
 
   const handleSubmit = (e) => {
     const obsdata = allValues;
-    
+
   };
 
   return (
     <div>
-      <Form values={allValues} handleChange={handleChange} submit={handleSubmit} handleLogo={logoHandler} handleProduct={productHandler}></Form>
+      <h1> OBS Script Creator </h1>
+      <h2> Create your obs script below</h2>
+      <Form 
+        values={allValues}
+        handleChange={handleChange} 
+        submit={handleSubmit} 
+        handleLogo={logoHandler} 
+        handleProduct={productHandler}></Form>
     </div>
     );
 };
