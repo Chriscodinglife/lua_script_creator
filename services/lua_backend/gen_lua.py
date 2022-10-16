@@ -12,8 +12,10 @@ Generate OBS Lua Fast API Server
 
 '''
 
-from fastapi import FastAPI
+from ctypes import Union
 from luator import luator
+from pydantic import BaseModel
+from fastapi import FastAPI, status
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -33,6 +35,16 @@ app.add_middleware(
 )
 
 
+class OBSFile(BaseModel):
+    '''OBS File Model'''
+    package_name: str
+    store_name: Union[str, None] = None
+    support_link: Union[str, None] = None
+    manual_link: Union[str, None] = None
+    logo_image: str
+    product_image: str
+
+
 @app.get("/ping", status_code=201)
 def ping():
 
@@ -40,8 +52,9 @@ def ping():
   return {"response": "Hello there"}
 
 
-@app.post("/generate/", status_code=201)
+@app.post("/generate", status_code=status.HTTP_201_CREATED)
 def generate_lua_file():
 
   '''Return a Lua File to download for OBS'''
 
+  pass
