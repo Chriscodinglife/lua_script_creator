@@ -15,8 +15,22 @@ Server to return a base64 encoded image string
 from fastapi import FastAPI, status
 from image_converter import ImageConverter
 from fastapi import FastAPI, File, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+origins = [
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["POST"],
+    allow_headers=["*"],
+)
+
 
 
 @app.get("/ping", status_code=201)
