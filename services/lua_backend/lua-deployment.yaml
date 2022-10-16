@@ -5,7 +5,7 @@ metadata:
   labels:
     app: genlua
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: genlua
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: genlua
-          image: gen_lua
+          image: genlua
           ports:
           - containerPort: 5000
           imagePullPolicy: Never
