@@ -19,25 +19,28 @@ from fastapi.responses import FileResponse
 
 app = FastAPI()
 
+origins = [
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["POST"],
+    allow_headers=["*"],
+)
+
 
 @app.get("/ping", status_code=201)
 def ping():
+
+  '''Return a hello there for a successful ping'''
   return {"response": "Hello there"}
 
 
-@app.get("/generate")
-def gen_lua():
+@app.post("/generate/", status_code=201)
+def generate_lua_file():
 
-  '''
-  General Run for gen_lua
-  '''
+  '''Return a Lua File to download for OBS'''
 
-  # Initiate luator
-  lua = luator()
-
-  # Test replace a text
-  lua.replace_text("<package_name>", "This cool title here")
-  lua_file = lua.export_via_web()
-  lua.clean_up()
-
-  return FileResponse(lua_file, media_type='application/octet-stream',filename=lua_file)
