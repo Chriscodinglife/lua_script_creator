@@ -1,13 +1,17 @@
 export default function Form(props) {
 
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={props.submit}>
             <label htmlFor="logoImage">Logo Image</label>
             <input
-                type = "file"></input>
+                type = "file"
+                name = "logoImage"
+                onChange = {props.handleLogo}></input>
             <label htmlFor="productImage">Product Image</label>
             <input
-                type = "file"></input>
+                type = "file"
+                name = "productImage"
+                onChange = {props.handleProduct}></input>
             <label htmlFor='pkgName'>Package Name</label>
             <input
                 type = "text"
