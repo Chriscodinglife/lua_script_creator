@@ -38,9 +38,9 @@ app.add_middleware(
 class OBSFile(BaseModel):
     '''OBS File Model'''
     package_name: str
-    store_name: Union[str, None] = None
-    support_link: Union[str, None] = None
-    manual_link: Union[str, None] = None
+    store_name: str
+    support_link: str
+    manual_link: str
     logo_image: str
     product_image: str
 
@@ -53,8 +53,22 @@ def ping():
 
 
 @app.post("/generate", status_code=status.HTTP_201_CREATED)
-def generate_lua_file():
+async def generate_lua_file(obsfile: OBSFile):
 
   '''Return a Lua File to download for OBS'''
 
-  pass
+  data = {'package_name': obsfile.package_name,
+                'store_name': obsfile.store_name,
+                'support_link': obsfile.support_link,
+                'manual_link':  obsfile.manual_link,
+                'logo_image': obsfile.logo_image,
+                'product_image': obsfile.product_image,}
+
+  lua = luator()
+  lua.set_obs_data(data)
+  lua.replace_obs()
+  lua_file = lua.export_via_web()
+  outputfile_name = "Quick OBS Installer.lua"
+
+  headers = {'Access-Control-Expose-Headers': 'Content-Disposition'}
+  return FileResponse(lua_file, filename=outputfile_name, headers=headers)
