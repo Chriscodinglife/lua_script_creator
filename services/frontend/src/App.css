@@ -1,29 +1,188 @@
-label {
-  display: block;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+@import url(https://fonts.googleapis.com/css?family=Inter:800,700,500,400);
+
+.main {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+}
+
+.background {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  
+  background: #002446;
+}
+
+.background-bar {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 19.72%;
+  bottom: 19.72%;
+  background: linear-gradient(270.03deg, #0066FF -0.81%, #0060EF 99.98%);
+}
+
+.obs-form-box {
+  position: absolute;
+  left: 27.71%;
+  right: 27.76%;
+  top: 10.65%;
+  bottom: 10.65%;
+  
+  background: #F4F4F4;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+}
+
+.main .box-title {
+  position: absolute;
+  left: 36.46%;
+  right: 36.51%;
+  top: 13.98%;
+  bottom: 78.89%;
+  
+  font-family: 'Inter';
+  font-style: normal;
   font-weight: 800;
-  margin-top: 10px;
+  font-size: 64px;
+  line-height: 77px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  
+  color: #000000;
 }
 
-input {
-  display: block;
-  height: 5vw;
-  width: 90vw;
-  margin-top: 10px;
-  font-size: medium;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+.main .box-desc {
+  position: absolute;
+  left: 42.55%;
+  right: 42.6%;
+  top: 21.39%;
+  bottom: 75%;
+  
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 39px;
+  /* identical to box height */
+  
+  display: flex;
+  align-items: center;
+  text-align: center;
+  
+  color: #1E1E1E;
 }
 
-button {
-  display: block;
-  background: lightskyblue;
-  color: white;
-  border-color: white;
-  border-style: none;
+.form {
+  position: absolute;
+  left: 31.35%;
+  right: 31.41%;
+  top: 28.52%;
+  bottom: 13.52%;
+}
+
+.pkgfield {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 85.46%;
+}
+
+.storefield {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 18.69%;
+  bottom: 66.77%;
+}
+
+.supportfield {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 37.38%;
+  bottom: 48.08%;
+  
+}
+
+.manualfield {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 56.07%;
+  bottom: 29.39%;
+}
+
+.fieldtitle {
+  position: absolute;
+  left: 0%;
+  right: 64.2%;
+  top: 0%;
+  bottom: 69.23%;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
   font-size: 20px;
-  margin: 20px;
-  width: 200px;
-  height: 50px;
-  border-radius: 5px;
+  line-height: 24px;
+
+  color: #000000;
 }
 
+.inputfield {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 30.77%;
+  bottom: 0%;
+  
+  background: #D9D9D9;
+  border-radius: 6px;
+  border-width: 0px;
+  font-family: 'Inter';
+  font-weight:400;
+  font-size: 20px;
+  outline: none;
+}
+
+.logobutton {
+  position: absolute;
+  left: 0%;
+  right: 56.08%;
+  top: 73.16%;
+  bottom: 16.77%;
+
+}
+
+.productbutton {
+  position: absolute;
+  left: 56.08%;
+  right: 0%;
+  top: 73.16%;
+  bottom: 16.77%;
+}
+
+.downloadbutton {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 85.62%;
+  bottom: 0%;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 44px;
+  color: #FFFFFF;
+  background: linear-gradient(178.65deg, #FF6B00 1.15%, #FF1F00 184.06%);
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  outline: none;
+  border-width: 0px;
+}

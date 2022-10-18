@@ -103,9 +103,15 @@ function App() {
 
 
   return (
-    <div>
-      <h1> OBS Script Creator </h1>
-      <h2> Create your obs script below </h2>
+    <div class='main'>
+      <div class='background'>
+        <div class='background-bar'>
+        </div>
+      </div>
+      <div class='obs-form-box'>
+      </div>
+      <p class='box-title'>Lua OBS Creator</p>
+      <p class='box-desc'>Create your lua file</p>
       <Form 
         values={allValues}
         handleChange={handleChange} 
