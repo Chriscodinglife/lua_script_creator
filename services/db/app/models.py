@@ -1,5 +1,6 @@
 from enum import Enum
 from tortoise import fields
+from pydantic import BaseModel
 from tortoise.models import Model
 
 
@@ -12,44 +13,47 @@ class ProjectStatus(str, Enum):
     posted_online = "Posted Online"
     finished = "Finished Project"
 
+class CompTypes(str, Enum):
+    '''Types of comps'''
+    alert = "Alert"
+    banner = "Banner"
+    camera_overlay = "Camera_Overlay"
+    icon = "Icon"
+    long_support_bar = "Long_Support_Bar"
+    main_design_title = "Main_Design_Title"
+    panel = "Panel"
+    screen = "Screen"
+    short_support_bar = "Short_Support_Bar"
+    social_bar = "Social_Bar"
+    social_bar_stack = "Social_Bar_Stack"
+    stinger = "Stinger"
+
+
+class ScreenTypes(str, Enum):
+    '''Types of Comps'''
+    blank: str = "Blank"
+    starting_soon: str = "Starting_Soon"
+    offline: str = "Offline"
+    be_right_back: str = "Be_Right_Back"
+    thanks_for_watching: str = "Thanks_For_Watching"
+
+
+class CompsModel(BaseModel):
+    '''Basic Model for Comps'''
+    comp_name: CompTypes
+    width: int
+    height: int
+    types: list[ScreenTypes]
+
 
 class Project(Model):
     '''Project Model for the database'''
     id = fields.IntField(pk=True)
-    name = fields.CharField(max_length=255)
-    description = fields.TextField()
-    modified = fields.DatetimeField(auto_now=True)
-    status : ProjectStatus = fields.CharEnumField(ProjectStatus, default=ProjectStatus.project_created, max_length=100)
+    project_name = fields.CharField(max_length=255)
+    project_description = fields.TextField()
+    modified_time = fields.DatetimeField(auto_now=True)
+    project_status : ProjectStatus = fields.CharEnumField(ProjectStatus, default=ProjectStatus.project_created, max_length=100)
+    project_comps : fields.JSONField = fields.JSONField(default={"Comps": []})
 
     def __str__(self):
         return self.name
-
-
-class ScreenNames(str, Enum):
-    '''The different types of screen names'''
-    blank = "Blank"
-    starting_soon = "Starting_Soon"
-    offline = "Offline"
-    brb = "Be_Right_Back"
-    thanks_for_watching = "Thanks_For_Watching"
-    all_scenes = "Blank,Starting_Soon,Offline,Be_Right_Back,Thanks_For_Watching"
-
-
-class ItemNames(str, Enum):
-    '''Names for the grouping the compositions'''
-    screens = "Screens"
-
-
-class ProjectItems(Model):
-    '''A Model for keeping track of all the Items in a Project'''
-    id = fields.IntField(pk=True)
-    items = fields.ManyToManyField('models.Screen', related_name='projectitems', through='items')
-    project: fields.ForeignKeyRelation[Project] = fields.ForeignKeyField('models.Project', related_name='project_items')
-
-
-class Screen(Model):
-    '''A Screen Model object to add to a ProjectItems'''
-    id = fields.IntField(pk=True)
-    item_name : ItemNames = fields.CharEnumField(ItemNames, default=ItemNames.screens)
-    screen_names : ScreenNames = fields.CharEnumField(ScreenNames, default=ScreenNames.all_scenes)
-    project : fields.ForeignKeyRelation[Project] = fields.ForeignKeyField('models.Project', related_name='screen_names')
