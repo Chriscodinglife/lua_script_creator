@@ -12,7 +12,6 @@ Generate OBS Lua Fast API Server
 
 '''
 
-from ctypes import Union
 from luator import luator
 from pydantic import BaseModel
 from fastapi import FastAPI, status
