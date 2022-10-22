@@ -13,7 +13,7 @@ class ProjectStatus(str, Enum):
     posted_online = "Posted Online"
     finished = "Finished Project"
 
-class CompTypes(str, Enum):
+class CompTypes(Enum):
     '''Types of comps'''
     alert = "Alert"
     banner = "Banner"
@@ -28,6 +28,9 @@ class CompTypes(str, Enum):
     social_bar_stack = "Social_Bar_Stack"
     stinger = "Stinger"
 
+    def __str__(self):
+        return self.value
+
 
 class ScreenTypes(str, Enum):
     '''Types of Comps'''
@@ -40,10 +43,10 @@ class ScreenTypes(str, Enum):
 
 class CompsModel(BaseModel):
     '''Basic Model for Comps'''
-    comp_name: CompTypes
+    comp_name: str
     width: int
     height: int
-    types: list[ScreenTypes]
+    screen_types: str
 
 
 class Project(Model):
