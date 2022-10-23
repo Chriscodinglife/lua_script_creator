@@ -46,7 +46,7 @@ class CompsModel(BaseModel):
     comp_name: str
     width: int
     height: int
-    screen_types: str
+    types: str
 
 
 class Project(Model):
