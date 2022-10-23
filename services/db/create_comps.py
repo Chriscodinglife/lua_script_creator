@@ -19,14 +19,14 @@ class CreateComps():
             screen_types_list = []
             screen_types_list.append(screen_type.value)
             screen_types = str([comma.replace(",", "|") for comma in screen_types_list]).replace("'", "")
-            comp = CompsModel(comp_name=comp_name, width=width, height=height, screen_types=screen_types)
+            comp = CompsModel(comp_name=comp_name, width=width, height=height, types=screen_types)
             project_comps.append(comp.dict())
         else:
             # If there is something in the project_comps list, convert the screen_types to a list
             for comp in project_comps:
                 # Iterate through each comp in the project_comps list
                 if comp['comp_name'] == comp_name:
-                    current_screen_types = str(comp['screen_types']).replace("[", "").replace("]", "")
+                    current_screen_types = str(comp['types']).replace("[", "").replace("]", "")
                     current_screen_types = current_screen_types.split("|")
                     type_flag = False
                     # Check if the screen_type is already in the list
@@ -38,7 +38,7 @@ class CreateComps():
                         current_screen_types.append(screen_type.value)
                         screen_types = str(current_screen_types).replace("'", "").replace(",", "|").replace(" ", "")
                         # Update the screen_types in the comp
-                        comp['screen_types'] = screen_types
+                        comp['types'] = screen_types
 
         return {"Comps" : project_comps}
 
@@ -54,14 +54,14 @@ class CreateComps():
                 screen_types_list = []
                 screen_types_list.append(screen_type.value)
                 screen_types = str([comma.replace(",", "|") for comma in screen_types_list]).replace("'", "")
-                comp = CompsModel(comp_name=comp_name, width=width, height=height, screen_types=screen_types)
+                comp = CompsModel(comp_name=comp_name, width=width, height=height, types=screen_types)
                 project_comps.append(comp.dict())
             else:
                 # If there is something in the project_comps list, convert the screen_types to a list
                 for comp in project_comps:
                     # Iterate through each comp in the project_comps list
                     if comp['comp_name'] == comp_name:
-                        current_screen_types = str(comp['screen_types']).replace("[", "").replace("]", "")
+                        current_screen_types = str(comp['types']).replace("[", "").replace("]", "")
                         current_screen_types = current_screen_types.split("|")
                         type_flag = False
                         # Check if the screen_type is already in the list
@@ -73,7 +73,7 @@ class CreateComps():
                             current_screen_types.append(screen_type.value)
                             screen_types = str(current_screen_types).replace("'", "").replace(",", "|").replace(" ", "")
                             # Update the screen_types in the comp
-                            comp['screen_types'] = screen_types
+                            comp['types'] = screen_types
             
         return {"Comps" : project_comps}
 
@@ -83,7 +83,7 @@ class CreateComps():
 
         # Create a CSV file
         csv_file_name = f"{project_name}_comps.csv"
-        csv_file = open(csv_file_name, 'w')
+        csv_file = open(csv_file_name, 'w', newline='')
 
         csv_writer = csv.writer(csv_file)
         count = 0
@@ -93,7 +93,6 @@ class CreateComps():
                 header = comp.keys()
                 csv_writer.writerow(header)
                 count += 1
-
             csv_writer.writerow(comp.values())
 
         csv_file.close()
