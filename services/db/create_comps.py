@@ -1,3 +1,5 @@
+import csv
+import json
 from app.models import CompTypes, ScreenTypes, CompsModel
 
 class CreateComps():
@@ -74,3 +76,26 @@ class CreateComps():
                             comp['screen_types'] = screen_types
             
         return {"Comps" : project_comps}
+
+    def create_csv(self, project_name: str, project_comps: dict):
+        '''Create a CSV file from the project_comps dict'''
+        comp_data = project_comps['Comps']
+
+        # Create a CSV file
+        csv_file_name = f"{project_name}_comps.csv"
+        csv_file = open(csv_file_name, 'w')
+
+        csv_writer = csv.writer(csv_file)
+        count = 0
+
+        for comp in comp_data:
+            if count == 0:
+                header = comp.keys()
+                csv_writer.writerow(header)
+                count += 1
+
+            csv_writer.writerow(comp.values())
+
+        csv_file.close()
+
+        return csv_file_name
