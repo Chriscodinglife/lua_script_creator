@@ -39,6 +39,7 @@ class ScreenTypes(str, Enum):
     offline: str = "Offline"
     be_right_back: str = "Be_Right_Back"
     thanks_for_watching: str = "Thanks_For_Watching"
+    main_title: str = "Main_Title"
 
 
 class CompsModel(BaseModel):
