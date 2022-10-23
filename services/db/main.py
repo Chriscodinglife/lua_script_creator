@@ -1,12 +1,14 @@
 from app.models import Project
-from app.create_comps import CreateComps, ScreenTypes
 from fastapi import FastAPI, status, Form
+from fastapi.responses import FileResponse
+from create_comps import CreateComps, ScreenTypes
 from tortoise.contrib.pydantic import pydantic_model_creator
 from tortoise.contrib.fastapi import HTTPNotFoundError, register_tortoise
 
 app = FastAPI()
 
 project_pydantic = pydantic_model_creator(Project)
+
 
 @app.get("/ping")
 async def ping():
@@ -57,6 +59,29 @@ async def add_all_screens(project_id: int):
     project.project_comps = screen_comps
     await project.save()
     return await project
+
+
+@app.get("/project/{project_id}/get_comps/", status_code=status.HTTP_200_OK)
+async def get_comps(project_id: int):
+    ''' Get all comps for a project '''
+    project = await Project.get(id=project_id)
+    if not project:
+        raise HTTPNotFoundError
+    return project.project_comps
+
+
+@app.get("/project/{project_id}/get_comps_csv/", status_code=status.HTTP_200_OK)
+async def get_comps_csv(project_id: int):
+    ''' Get all comps for a project as a csv '''
+    project = await Project.get(id=project_id)
+    if not project:
+        raise HTTPNotFoundError
+    create_comps = CreateComps()
+    csv = create_comps.create_csv(project_name=project.project_name,
+                                    project_comps=project.project_comps)
+
+    headers = {'Access-Control-Expose-Headers': 'Content-Disposition'}
+    return FileResponse(csv, filename=csv, headers=headers)
 
     
 register_tortoise(
