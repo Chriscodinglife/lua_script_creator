@@ -1,7 +1,9 @@
 import Home from './Home';
 import Navbar from './Navbar';
 import CreateProject from './CreateProject';
+import ProjectDetails from './ProjectDetails';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 
 function App() {
   return (
@@ -12,6 +14,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route path="/create" element={<CreateProject />} />
+            <Route path="/project/:id" element={<ProjectDetails />}/>
           </Routes>
         </div>
       </div>
