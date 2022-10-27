@@ -11,7 +11,7 @@ const useFetch = (url) => {
     // Get data from the Project server
     useEffect(() => {
 
-        fetch(url, {signal: abortCont.signal })
+        fetch(url)
         .then(response => {
             if (!response.ok) {
                 throw Error('Could not fetch data from resource')
@@ -24,12 +24,8 @@ const useFetch = (url) => {
             setError(null);
         })
         .catch((error) => {
-            if (error.name === 'AbortError') {
-                console.log('fetch aborted')
-            } else {
-                setIsPending(false);
-                setError(error.message);
-            }
+            setIsPending(false);
+            setError(error.message);
         });   
     }, [url]);
 
