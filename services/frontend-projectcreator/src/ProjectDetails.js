@@ -23,7 +23,9 @@ const ProjectDetails = () => {
                             <p>Comp Name: {comps.comp_name}</p>
                             <p>Height: {comps.width}</p>
                             <p>Width: {comps.height}</p>
-                            <p>Types: {comps.types}</p>
+                            <div>Types: {comps.types.map((type) => (
+                                <p>{type}</p>
+                            ))}</div>
                         </div>
                     ))}
                 </article>
