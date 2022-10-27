@@ -47,7 +47,7 @@ class CompsModel(BaseModel):
     comp_name: str
     width: int
     height: int
-    types: str
+    types: list
 
 
 class Project(Model):
