@@ -75,3 +75,38 @@
 .project-details div {
   margin: 20px 0;
 }
+
+.createproject {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.createproject label {
+  text-align: left;
+  display: block;
+}
+
+.createproject h2 {
+  font-size: 20px;
+  color: #fc0330;
+  margin-bottom: 30px;
+}
+
+.createproject input, .createproject textarea, .createproject select {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: block;
+}
+
+.createproject button {
+  background: #fc0330;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
