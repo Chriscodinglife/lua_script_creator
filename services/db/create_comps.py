@@ -8,39 +8,34 @@ class CreateComps():
     def __init__(self):
         pass
 
-    def add_screen_comp(self, project_comps: list, screen_type: ScreenTypes):
+
+    def add_screen_comps(self, project_comps: list, screen_types: list):
         '''Create a screen comp'''
         width = 1920
         height = 1080
         comp_name = CompTypes.screen.value
-        
+
         if project_comps == []:
-            # If there is nothing in the project_comps list, add the first comp
-            screen_types_list = []
-            screen_types_list.append(screen_type.value)
-            screen_types = str([comma.replace(",", "|") for comma in screen_types_list]).replace("'", "")
+
             comp = CompsModel(comp_name=comp_name, width=width, height=height, types=screen_types)
             project_comps.append(comp.dict())
+
         else:
-            # If there is something in the project_comps list, convert the screen_types to a list
+
             for comp in project_comps:
-                # Iterate through each comp in the project_comps list
                 if comp['comp_name'] == comp_name:
-                    current_screen_types = str(comp['types']).replace("[", "").replace("]", "")
-                    current_screen_types = current_screen_types.split("|")
-                    type_flag = False
-                    # Check if the screen_type is already in the list
-                    for this_type in current_screen_types:
-                        if screen_type in this_type:
-                            type_flag = True
-                    if type_flag == False:
-                        # If the screen_type is not in the list, add it
-                        current_screen_types.append(screen_type.value)
-                        screen_types = str(current_screen_types).replace("'", "").replace(",", "|").replace(" ", "")
-                        # Update the screen_types in the comp
-                        comp['types'] = screen_types
+
+                    for screen_type in screen_types:
+                        type_checker = False
+                        for this_type in comp['types']:
+                            if screen_type == this_type:
+                                type_checker = True
+                        if not type_checker:
+                            comp['types'].append(screen_type)
+                break
 
         return {"Comps" : project_comps}
+
 
     def add_all_screens(self, project_comps: list):
         '''Create all screen comps'''
@@ -48,34 +43,29 @@ class CreateComps():
         height = 1080
         comp_name = CompTypes.screen.value
 
-        for screen_type in ScreenTypes:
-            if project_comps == []:
-                # If there is nothing in the project_comps list, add the first comp
-                screen_types_list = []
-                screen_types_list.append(screen_type.value)
-                screen_types = str([comma.replace(",", "|") for comma in screen_types_list]).replace("'", "")
-                comp = CompsModel(comp_name=comp_name, width=width, height=height, types=screen_types)
-                project_comps.append(comp.dict())
-            else:
-                # If there is something in the project_comps list, convert the screen_types to a list
-                for comp in project_comps:
-                    # Iterate through each comp in the project_comps list
-                    if comp['comp_name'] == comp_name:
-                        current_screen_types = str(comp['types']).replace("[", "").replace("]", "")
-                        current_screen_types = current_screen_types.split("|")
-                        type_flag = False
-                        # Check if the screen_type is already in the list
-                        for this_type in current_screen_types:
-                            if screen_type in this_type:
-                                type_flag = True
-                        if type_flag == False:
-                            # If the screen_type is not in the list, add it
-                            current_screen_types.append(screen_type.value)
-                            screen_types = str(current_screen_types).replace("'", "").replace(",", "|").replace(" ", "")
-                            # Update the screen_types in the comp
-                            comp['types'] = screen_types
-            
+        screen_types = [screen_type for screen_type in ScreenTypes]
+        
+        if project_comps == []:
+
+            comp = CompsModel(comp_name=comp_name, width=width, height=height, types=screen_types)
+            project_comps.append(comp.dict())
+
+        else:
+
+            for comp in project_comps:
+                if comp['comp_name'] == comp_name:
+
+                    for screen_type in screen_types:
+                        type_checker = False
+                        for this_type in comp['types']:
+                            if screen_type == this_type:
+                                type_checker = True
+                        if not type_checker:
+                            comp['types'].append(screen_type)
+                break
+
         return {"Comps" : project_comps}
+        
 
     def create_csv(self, project_name: str, project_comps: dict):
         '''Create a CSV file from the project_comps dict'''
