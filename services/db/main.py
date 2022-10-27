@@ -2,10 +2,23 @@ from app.models import Project
 from fastapi import FastAPI, status, Form
 from fastapi.responses import FileResponse
 from create_comps import CreateComps, ScreenTypes
+from fastapi.middleware.cors import CORSMiddleware
 from tortoise.contrib.pydantic import pydantic_model_creator
 from tortoise.contrib.fastapi import HTTPNotFoundError, register_tortoise
 
 app = FastAPI()
+
+origins = [
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["POST"],
+    allow_headers=["*"],
+)
 
 project_pydantic = pydantic_model_creator(Project)
 
