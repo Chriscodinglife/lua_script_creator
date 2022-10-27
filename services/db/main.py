@@ -1,3 +1,6 @@
+from ctypes import Union
+from turtle import Screen
+from typing import List
 from app.models import Project
 from fastapi import FastAPI, status, Form
 from fastapi.responses import FileResponse
@@ -45,6 +48,7 @@ async def get_projects():
     else:
         return list
 
+
 @app.get("/project/{project_id}/", status_code=status.HTTP_200_OK)
 async def get_project(project_id: int):
     '''Get a single project based on an ID'''
@@ -54,14 +58,21 @@ async def get_project(project_id: int):
     return await project
 
 
+@app.get("/screens/types/", status_code=status.HTTP_200_OK)
+async def get_screen_comp_types():
+    '''Return a list of screen types'''
+    screen_type_list = [screen_type.value for screen_type in ScreenTypes]
+    return { 'ScreenTypes' : screen_type_list}
+
+
 @app.post("/project/{project_id}/add_screen_comp/", status_code=status.HTTP_201_CREATED)
-async def add_screen_comp(project_id: int, screen_type: ScreenTypes):
+async def add_screen_comp_type(project_id: int, screen_types: List[ScreenTypes]):
     ''' Add a screen comp to a project '''
     project = await Project.get(id=project_id)
     if not project:
         raise HTTPNotFoundError
     create_comps = CreateComps()
-    screen_comps = create_comps.add_screen_comp(project_comps=project.project_comps['Comps'], screen_type=screen_type)
+    screen_comps = create_comps.add_screen_comps(project_comps=project.project_comps['Comps'], screen_types=screen_types)
 
     project.project_comps = screen_comps
     await project.save()
