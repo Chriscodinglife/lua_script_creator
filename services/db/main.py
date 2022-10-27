@@ -45,6 +45,14 @@ async def get_projects():
     else:
         return list
 
+@app.get("/project/{project_id}/", status_code=status.HTTP_200_OK)
+async def get_project(project_id: int):
+    '''Get a single project based on an ID'''
+    project = await Project.get(id=project_id)
+    if not project:
+        raise HTTPNotFoundError
+    return await project
+
 
 @app.post("/project/{project_id}/add_screen_comp/", status_code=status.HTTP_201_CREATED)
 async def add_screen_comp(project_id: int, screen_type: ScreenTypes):
