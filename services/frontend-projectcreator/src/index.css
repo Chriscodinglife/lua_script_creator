@@ -55,3 +55,23 @@
   color: #fc0330;
   margin-bottom: 8px;
 }
+
+.project-preview a {
+  text-decoration: none;
+}
+
+.project-details h2 {
+  font-size: 20px;
+  color: #fc0330;
+  margin-bottom: 10px;
+}
+
+.project-details h3 {
+  font-size: 18px;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.project-details div {
+  margin: 20px 0;
+}
