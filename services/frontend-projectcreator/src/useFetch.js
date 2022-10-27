@@ -11,10 +11,6 @@ const useFetch = (url) => {
     // Get data from the Project server
     useEffect(() => {
 
-        // Create an abort controller to stop fetching if
-        // quickly moving away from Fetching
-        const abortCont = new AbortController();
-
         fetch(url, {signal: abortCont.signal })
         .then(response => {
             if (!response.ok) {
@@ -28,14 +24,16 @@ const useFetch = (url) => {
             setError(null);
         })
         .catch((error) => {
-            setIsPending(false);
-            setError(error.message);
+            if (error.name === 'AbortError') {
+                console.log('fetch aborted')
+            } else {
+                setIsPending(false);
+                setError(error.message);
+            }
         });   
-    
-        return () => abortCont.abort();
     }, [url]);
 
-    return { data, isPending, error }
+    return { data, isPending, error };
 
 }
 
