@@ -18,13 +18,13 @@ const ProjectDetails = () => {
                     <p>Last Edited: {project.modified_time}</p>
                     <p>Project Status: {project.project_status}</p>
                     <p>id: {project.id}</p>
-                    {project.project_comps.Comps.map((comps) => (
-                        <div>
+                    {project.project_comps.Comps.map((comps, index) => (
+                        <div key={index}>
                             <p>Comp Name: {comps.comp_name}</p>
                             <p>Height: {comps.width}</p>
                             <p>Width: {comps.height}</p>
-                            <div>Types: {comps.types.map((type) => (
-                                <p>{type}</p>
+                            <div>Types: {comps.types.map((type,index) => (
+                                <p key={index}>{type}</p>
                             ))}</div>
                         </div>
                     ))}
