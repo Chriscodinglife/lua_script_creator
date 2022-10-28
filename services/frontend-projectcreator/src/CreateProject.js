@@ -35,8 +35,22 @@ const CreateProject = () => {
                 'project_description': desc
             })
         })
-        .then(() => {
-            setIsFormPending(false)
+        .then(response => {
+            if (!response.ok) {
+                throw Error('Could not post data')
+            }
+            return response.json()
+        })
+        .then(data => {
+            const add_screens_url = "http://localhost:8000/project/" + data.id + "/add_screen_comp/"
+            fetch(add_screens_url, {
+                method: 'POST',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(screens)
+            })
+            .then(() => {
+                setIsFormPending(false)
+            });
         });
     };
 
