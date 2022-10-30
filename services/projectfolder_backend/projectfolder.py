@@ -1,8 +1,6 @@
 import os
 import shutil
 
-from lockfile import Error
-
 class Projectfolder():
     '''Class for downloading a Project Folder Template'''
 
@@ -68,8 +66,8 @@ class Projectfolder():
         try:
             if project_folder_created:
                 return self.project_folder
-        except Error as e:
-            return { 'error': e }
+        except:
+            return { 'error': 'Something went wrong' }
 
 
 def main():
