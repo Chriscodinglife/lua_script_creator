@@ -11,7 +11,9 @@ const useFetch = (url) => {
     // Get data from the Project server
     useEffect(() => {
 
-        fetch(url)
+        fetch(url, {
+            method: 'GET'
+        })
         .then(response => {
             if (!response.ok) {
                 throw Error('Could not fetch data from resource')
