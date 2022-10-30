@@ -1,5 +1,6 @@
-import useFetch from "./useFetch";
 import { useState } from "react";
+import useFetch from "./useFetch";
+import { useNavigate } from 'react-router-dom';
 
 const CreateProject = () => {
 
@@ -11,15 +12,53 @@ const CreateProject = () => {
     const [selectedScreen, setSelectedScreen] = useState('')
     const [screens, setScreens] = useState([]);
     const [isFormPending, setIsFormPending] = useState(false)
+    const navigate = useNavigate()
+
+
+    // Check if the screen type we are trying to add is already in current screens
+    const screenTypeFound = (add_screen_type) => screens.some(screen_type => {
+        if (screen_type === add_screen_type) {
+            return true;
+        }
+
+        return false;
+    });
+
 
     const handleAddScreen = (e) => {
 
-        if (e.target.value !== " ") {
+        if (e.target.value !== " " && !screenTypeFound(e.target.value)) {
 
             setScreens((current_screens) => [...current_screens, e.target.value]);
             setSelectedScreen(e.target.value)
         }
+
     };
+
+
+    const addAllScreens = () => {
+        screen_types.ScreenTypes.map((screen) => {
+            if (!screenTypeFound(screen)) {
+                setScreens((current_screens) => [...current_screens, screen]);
+            };
+            return null;
+        })
+    };
+
+
+    const handleRemoveScreen = (thisScreen) => {
+        const newScreens = screens.filter(screen => screen !== thisScreen);
+        setScreens(newScreens)
+    }
+
+
+    const screensLength = () => {
+        if (screens.length > 0) {
+            return true
+        }
+        return false
+    }
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -50,9 +89,11 @@ const CreateProject = () => {
             })
             .then(() => {
                 setIsFormPending(false)
+                navigate('/project/' + data.id)
             });
-        });
+        }); 
     };
+
 
     return ( 
         <div className="createproject">
@@ -86,11 +127,22 @@ const CreateProject = () => {
                 )}
                 { !isFormPending && <button>Add Project</button> }
                 { isFormPending && <button disabled>Creating Project...</button>}
-                <label>Comps to Add:</label>
-                {screens.map((screen, index) => (
-                    <li key={index}>{screen}</li>
-                ))}
             </form>
+            <div className="comps-container">
+                <div className="comps top">
+                    <label>Comps to Add:</label>
+                    <button onClick={addAllScreens}>Add All Screens</button>
+                </div>
+                {screensLength ? (
+                    screens.map((screen, index) => (
+                    <div key={index} className='comps'>
+                        <li>{screen}</li>
+                        <button onClick={() => handleRemoveScreen(screen)}>Remove</button>
+                    </div>
+                ))) : (
+                    <div></div>
+                )}
+            </div>
         </div>
      );
 }
