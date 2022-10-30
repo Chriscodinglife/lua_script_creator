@@ -60,21 +60,6 @@
   text-decoration: none;
 }
 
-.project-details h2 {
-  font-size: 20px;
-  color: #fc0330;
-  margin-bottom: 10px;
-}
-
-.project-details h3 {
-  font-size: 18px;
-  color: black;
-  margin-bottom: 10px;
-}
-
-.project-details div {
-  margin: 20px 0;
-}
 
 .createproject {
   max-width: 400px;
@@ -108,5 +93,105 @@
   border: 0;
   padding: 8px;
   border-radius: 8px;
+  cursor: pointer;
+}
+
+.comps-container {
+  display: grid;
+  max-width: 600px;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  margin-top: 20px;
+}
+
+.comps {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  padding-top: 10px;
+}
+
+.comps.top {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+}
+
+.comps label {
+  align-self: center;
+}
+
+.comps li {
+  text-align: left;
+}
+
+.comps button {
+  width: 100px;
+  justify-self: right;
+}
+
+.project-details-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.project-details-container h1 {
+  padding-bottom: 15px;
+  font-size: 30px;
+}
+
+.project-details-container .project-id {
+  justify-self: right;
+  align-self: end;
+  color: #bdbdbd
+}
+
+.project-status {
+  grid-row: span 2;
+  justify-self: center;
+  align-self: center;
+  padding-bottom: 5px;
+  
+}
+
+.project-details-container h2 {
+  padding-bottom: 5px;
+}
+
+.project-edit {
+  grid-column: span 2;
+  border-bottom: 1px solid #cacaca;
+  padding-bottom: 40px;
+}
+
+.project-screens {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column: span 2;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.project-screens div p {
+  margin-top: 5px;
+}
+
+.actionbuttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.actionbuttons button {
+  width: 200px;
+  justify-self: center;
+  background-color: #fc0330;
+  border: 0px;
+  border-radius: 5px;
+  color: white;
+  height: 50px;
+  font-size: 15px;
+}
+
+.actionbuttons button:hover {
   cursor: pointer;
 }
