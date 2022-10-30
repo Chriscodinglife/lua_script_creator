@@ -19,7 +19,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["POST"],
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 
@@ -44,7 +44,7 @@ async def get_projects():
     ''' Get all projects '''
     list = await project_pydantic.from_queryset(Project.all())
     if len(list) == 0:
-        return {'Response': "No Projects"}
+        return {'No_Projects': True}
     else:
         return list
 
@@ -114,6 +114,16 @@ async def get_comps_csv(project_id: int):
 
     headers = {'Access-Control-Expose-Headers': 'Content-Disposition'}
     return FileResponse(csv, filename=csv, headers=headers)
+
+
+@app.delete("/project/{project_id}/delete")
+async def delete_project(project_id: int):
+    '''Delete a project'''
+    project = await Project.get(id=project_id)
+    if not project:
+        raise HTTPNotFoundError
+    await project.delete()
+    return {'Status': 'Project Deleted'}
 
     
 register_tortoise(
