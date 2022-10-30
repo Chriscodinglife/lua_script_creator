@@ -1,0 +1,30 @@
+Create Folder for project using create_project_folder.py create microservice for this, maybe to store files on online repo??
+Create Project Template using automate script within After Effects = automateTwitchComps.jsx
+Design The project
+Render all Files into png and .webm formats into one folder and get the Frame Transition Points
+Render all .webm files into alpha enabled video files into one folder
+Organize All Files into folders using py script = create_twitch_package_folder.py create microservice that can upload all files to the online repo???
+Create the manual images using the Advertising Template create microservice to accept the manual images
+Create the Youtube and Etsy Ad videos from Advertising Template microservice
+Create the Etsy Posting Images and video from Advertisting Tempalte microservice
+Create the youtube thumbnail from Advertising Template
+Convert the 1st page manual image to base 64 and add this image to the lua script
+Upload the manual to Google Drive and
+ add it to stream package as a link, within the obs script with using = create_manual.py
+Get the Shared link of the manual
+Finalize the lua installer script Quick OBS Installer Template.lua
+Setup the streamlabs collections importer file by using Streamlabs app
+
+Add manual and youtube video and font links to description of etsy post and use the =  get_description.py script
+Upload Youtube video with thumbnail and add music = upload_youtube.py (in case that doesn't work just do manually..jesus youtube)
+
+Upload to Etsy with the post template using two scripts post_to_etsy.py + run_selenium.py
+Upload Etsy Video manually (yea this sucks)
+
+Upload Downloadable files as a zipped compressed file to Google Drive
+Create Download file PDF with Link for Etsy using the Etsy Purchased Product PDF.png
+Upload Download file PDF to Etsy as the downloadable purchase items after users pay
+Do any final Checks
+Add Etsy link to Youtube video description
+Add Youtube Video to Etsy description
+Send out Free Sample to anyone who wants 
