@@ -71,6 +71,10 @@ class CreateComps():
         '''Create a CSV file from the project_comps dict'''
         comp_data = project_comps['Comps']
 
+        for comps in comp_data:
+            types_converted = str(comps['types']).replace('"', '').replace("'", '').replace(", ", "|")
+            comps['types'] = types_converted
+
         # Create a CSV file
         csv_file_name = f"{project_name}_comps.csv"
         csv_file = open(csv_file_name, 'w', newline='')
