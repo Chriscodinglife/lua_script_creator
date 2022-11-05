@@ -1,18 +1,22 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import getModifiedTime from "./getModifiedTime";
 
 const ProjectList = ({projects, title}) => {
+
+    const [listProjects, setListProjects] = useState(projects)
 
     const noProjects = projects.No_Projects;
     let displayProjects = '';
     if (noProjects) {
         displayProjects = <p>No Projects Available</p>
     } else {
-        displayProjects = projects.map((project) => (
+        displayProjects = listProjects.map((project) => (
             <div className="project-preview" key={project.id}>
                 <Link to={`/project/${project.id}`}>
                     <h2>{project.project_name}</h2>
                     <p>Status: {project.project_status}</p>
-                    <p>Edited on: {project.modified_time}</p>
+                    { getModifiedTime(project.modified_time) }
                 </Link>
             </div>
         ))
