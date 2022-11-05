@@ -8,7 +8,7 @@ class ProjectFolder():
     def __init__(self, project_name: str, include_icons: bool) -> None:
         '''Constructor to initialize the class'''
         self.project_name = project_name.replace(" ", "_") + '_project'
-        self.zip_file_name = project_name + '.zip' 
+        self.zip_file_name = self.project_name + '.zip' 
         self.include_icons = include_icons
         self.this_dir = os.path.dirname(os.path.abspath(__file__))
         self.projects_container = os.path.join(self.this_dir, 'projects')
@@ -19,7 +19,7 @@ class ProjectFolder():
         except FileExistsError:
             pass
 
-        self.project_folder = os.path.join(self.projects_container, project_name)
+        self.project_folder = os.path.join(self.projects_container, self.project_name)
     
         self.local_icons = os.path.join(self.this_dir, 'icons')
         
@@ -53,9 +53,10 @@ class ProjectFolder():
             return {'response': 'Project folder already exists'}
 
 
-    def delete_project_folder(self):
-        '''Deletes the project folder and subfolders'''
+    def delete_project(self):
+        '''Deletes the project folder and subfolders with the zip folder'''
         shutil.rmtree(self.project_folder)
+        os.remove(self.zip_file_path)
 
 
     def zip_project_folder(self):
