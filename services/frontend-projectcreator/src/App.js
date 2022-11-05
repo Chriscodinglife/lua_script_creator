@@ -1,4 +1,4 @@
-import Home from './Home';
+import ListProjects from './ListProjects'
 import Navbar from './Navbar';
 import CreateProject from './CreateProject';
 import ProjectDetails from './ProjectDetails';
@@ -12,7 +12,7 @@ function App() {
         <Navbar />
         <div className="content">
           <Routes>
-            <Route exact path="/" element={<Home />} />
+            <Route exact path="/projects" element={<ListProjects />} />
             <Route path="/create" element={<CreateProject />} />
             <Route path="/project/:id" element={<ProjectDetails />} />
           </Routes>
