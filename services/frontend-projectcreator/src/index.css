@@ -136,7 +136,7 @@
 }
 
 .project-details-container h1 {
-  padding-bottom: 15px;
+  padding-bottom: 5px;
   font-size: 30px;
 }
 
@@ -146,9 +146,13 @@
   color: #bdbdbd
 }
 
+.project-desc {
+  grid-column: span 2;
+}
+
 .project-status {
-  grid-row: span 2;
-  justify-self: center;
+  grid-column: span 2;
+  justify-self: right;
   align-self: center;
   padding-bottom: 5px;
   
@@ -160,16 +164,21 @@
 
 .project-edit {
   grid-column: span 2;
-  border-bottom: 1px solid #cacaca;
-  padding-bottom: 40px;
+  justify-self: right;
+  align-self: center;
 }
 
 .project-screens {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column: span 2;
-  margin-top: 30px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  
 }
 
 .project-screens div p {
@@ -179,19 +188,25 @@
 .actionbuttons {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  margin-top: 10px;
 }
 
 .actionbuttons button {
   width: 200px;
   justify-self: center;
-  background-color: #fc0330;
+  background-color: #02c292;
   border: 0px;
   border-radius: 5px;
   color: white;
   height: 50px;
   font-size: 15px;
+  margin-bottom: 20px;
 }
 
 .actionbuttons button:hover {
   cursor: pointer;
+}
+
+.actionbuttons .delete {
+  background-color: #e9003a;
 }
