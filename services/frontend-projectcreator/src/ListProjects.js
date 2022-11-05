@@ -2,7 +2,7 @@ import useFetch from './useFetch';
 import ProjectList from './ProjectList';
 
 
-const Home = () => {
+const ListProjects = () => {
 
     const url = 'http://localhost:8000/projects'
     const { data: projects, isPending, error } = useFetch(url)
@@ -17,4 +17,4 @@ const Home = () => {
 
 }
  
-export default Home;
+export default ListProjects;
