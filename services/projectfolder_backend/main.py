@@ -1,7 +1,7 @@
-from fastapi import FastAPI, status
 from projectfolder import ProjectFolder
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi import BackgroundTasks, FastAPI, status
 
 app = FastAPI()
 
@@ -26,13 +26,16 @@ def ping():
 
 
 @app.get("/download", status_code=status.HTTP_200_OK)
-def download_project_folder(project_name: str, include_icons: bool = False):
+async def download_project_folder(project_name: str, include_icons: bool = False, background_tasks: BackgroundTasks = BackgroundTasks()):
         
         '''Return a project folder to download'''
         project_folder = ProjectFolder(project_name, include_icons)
         project_folder.create_project_folder()
         file = project_folder.zip_project_folder()
-        return FileResponse(file, media_type="application/zip", filename=f"{project_folder.project_name}.zip")
+
+        background_tasks.add_task(project_folder.delete_project)
+        headers = {'Access-Control-Expose-Headers': 'Content-Disposition'}
+        return FileResponse(file, media_type="application/zip", filename=project_folder.zip_file_name, headers=headers)
 
 
 @app.get("/delete", status_code=status.HTTP_200_OK)
