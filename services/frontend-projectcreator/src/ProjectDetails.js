@@ -15,7 +15,7 @@ const ProjectDetails = () => {
         fetch(url + '/delete', {
             method: 'DELETE'
         }).then(() => {
-            navigate('/');
+            navigate('/projects');
         })
     };
 
@@ -94,22 +94,23 @@ const ProjectDetails = () => {
             { error && <div>{ error }</div> }
             { project && (
                 <div>
+                    <h1>{ project.project_name }</h1>
                     <div className="project-details-container">
-                        <h1>{ project.project_name }</h1>
-                        <p className="project-id">id: {project.id}</p>
                         <h2 className='project-desc'>About: { project.project_description }</h2>
+                        <p className="project-id">id: {project.id}</p>
                         <p className="project-status">Status: {project.project_status}</p>
                         {getModifiedTime(project.modified_time)}
-                        {project.project_comps.Comps.map((comps, index) => (
-                            <div key={index} className="project-screens">
-                                <div>Comp Name: {comps.comp_name}</div>
-                                <div>Dimensions: {comps.width}w & {comps.height}h</div>
-                                <div>Types: {comps.types.map((type,index) => (
-                                    <p key={index}>{type}</p>
-                                ))}</div>
-                            </div>
-                        ))}
                     </div>
+                    {project.project_comps.Comps.map((comps, index) => (
+                    <div key={index} className={comps.comp_name}>
+                        <h2>{comps.comp_name}s</h2>
+                        <div>Dimensions: {comps.width}w & {comps.height}h</div>
+                        <div>Types: {comps.types.map((type,index) => (
+                            <p key={index}>{type}</p>
+                        ))}</div>
+                    </div>
+                    ))}
+                    
                     <div className="actionbuttons">
                         <button onClick={handleDownloadProjectCSV}>Download CSV</button>
                         <button onClick={handleDownloadProjectFolder}>Download Project Folder</button>
