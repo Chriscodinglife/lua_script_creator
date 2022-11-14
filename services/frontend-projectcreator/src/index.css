@@ -67,6 +67,7 @@
   z-index: 1;
   position: relative;
   text-decoration: none;
+  margin-right: 45px;
 }
 
 .navbar .createbutton::before {
@@ -82,13 +83,11 @@
   left: 0;
   text-decoration: none;
   border-radius: 64px;
-
 }
 
 .navbar .createbutton:hover::before {
   text-decoration: none;
   opacity: 1;
-  
 }
 
 .content {
@@ -99,12 +98,31 @@
 .home {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin-top: 150px;
+  margin-top: 120px;
+  animation: fadeInAnimation ease 1.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  position: relative;
+  margin-left: 50px;
+  margin-right: 50px;
+  grid-gap: 50px;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    top: 40px;
+    opacity: 0;
+  }
+  100% {
+    top: 0px;
+    opacity: 1;
+  }
 }
 
 .home .home-text {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
+  justify-items: center;
 }
 
 .home .home-text h1 {
@@ -126,11 +144,11 @@
   color: #fff;
   border: none;
   align-self: center;
-  padding: 20px 40px;
+  padding: 10px 25px;
   justify-self: left;
   border-radius: 64px;
   font-weight: 400;
-  font-size: 28px;
+  font-size: 22px;
   cursor: pointer;
   text-decoration: none;
   z-index: 1;
@@ -161,26 +179,80 @@
   object-fit: cover;
 }
 
-.project-preview {
-  padding: 10px 16px;
-  margin: 20px 0;
-  border-bottom: 1px solid #fafafa;
+.renderlist {
+  margin: 40px;
 }
 
-.project-preview:hover {
-  box-shadow: 1px 3px 5px rgba(0,0,0,0.1)
+.renderlist h1 {
+  font-weight: 500;
+  font-size: 40px;
+  padding: 50px 0 20px 0;
+  border-bottom: 1px solid var(--grey);
 }
 
-.project-preview h2 {
-  font-size: 20px;
-  color: #fc0330;
-  margin-bottom: 8px;
+.project-list {
+  margin-top: 50px;
+  display: grid;
+  max-width: 1000px;
+  margin: 40px auto;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 40px;
+  
 }
 
-.project-preview a {
+.projectboxdetails {
+  display: grid;
+  max-width: 700px;
+  grid-template-columns: 0.3fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas:
+    "projectboximage project_name"
+    "projectboximage project_mod_time"
+    "projectboximage project_status";
   text-decoration: none;
+  padding: 10px;
+  box-shadow: 10px 10px 20px var(--grey);
+  border-radius: 30px;
+  transition: box-shadow 0.1s;
 }
 
+.projectboxdetails:hover {
+  box-shadow:  4px 4px 5px var(--grey);
+}
+
+.projectboxdetails .projectboximage {
+  grid-area: projectboximage;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.projectboxdetails .project_name {
+  grid-area: project_name;
+  font-weight: 500;
+  font-size: 20px;
+  padding-left: 20px;
+  justify-self: left;
+  align-self: center;
+}
+
+.projectboxdetails .project-edit {
+  grid-area: project_mod_time;
+  justify-self: left;
+  align-self: center;
+  padding-left: 20px;
+}
+
+.projectboxdetails .project_status {
+  grid-area: project_status;
+  font-weight: 300;
+  font-size: 15px;
+  padding-left: 20px;
+  justify-self: left;
+  align-self: center;
+}
 
 .createproject {
   max-width: 400px;
@@ -251,20 +323,21 @@
   justify-self: right;
 }
 
+.project-details h1 {
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--grey);
+}
+
 .project-details-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-}
-
-.project-details-container h1 {
-  padding-bottom: 5px;
-  font-size: 30px;
+  margin-bottom: 40px;
 }
 
 .project-details-container .project-id {
   justify-self: right;
   align-self: end;
-  color: #bdbdbd
+  color: #bdbdbd;
 }
 
 .project-desc {
@@ -330,4 +403,60 @@
 
 .actionbuttons .delete {
   background-color: #e9003a;
+}
+
+/* Response */
+@media screen and (max-width: 1080px) {
+  .home {
+    grid-template-columns: 1fr;
+    text-align: center;
+    grid-gap: 10px;
+  }
+
+  .home .home-text .createbutton {
+    justify-self: center;
+  }
+
+  .home img {
+    width: 70%;
+    object-fit: contain;
+    align-self: center;
+    justify-self: center;
+    grid-row-start: 1;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .project-list {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .projectboxdetails {
+    padding-right: 5em;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .projectboxdetails {
+    padding-right: 20px
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .projectboxdetails .projectboximage {
+    height: 15vw;
+    width: 15vw;
+    justify-self: center;
+    align-self: center;
+  }
+  .projectboxdetails .project_name {
+    font-size: 3.5vw;
+  }
+  .projectboxdetails .project-edit {
+    font-size: 3.5vw;
+  }
+  .projectboxdetails .project_status {
+    font-size: 3.5vw;
+  }
 }
