@@ -8,10 +8,11 @@ const ListProjects = () => {
     const { data: projects, isPending, error } = useFetch(url)
 
     return (
-        <div className="home">
+        <div className="renderlist">
+            <h1>All Projects</h1>
             { error && <div> { error } </div> }
             { isPending && <div>Loading...</div> }
-            { projects && <ProjectList projects={projects} title='All Projects'/> }
+            { projects && <ProjectList projects={projects} /> }
         </div>
     );
 
